@@ -1,0 +1,7 @@
+# Install the main set of requirements
+-r ./base.txt
+
+# Additional requirements useful for developers of IAR Stats Gatherer
+
+# Django debugging
+django-debug-toolbar

@@ -1,0 +1,23 @@
+# docker-compose file for local development and testing with container image.
+version: '3.2'
+
+services:
+  # PostgreSQL database for IAR Stats Gatherer
+  iar-gatherstats-db:
+    image: postgres
+    env_file:
+      - base.env
+    volumes:
+      - iar-gatherstats-postgres-data-local:/var/lib/postgresql/data
+      - iar-gatherstats-postgres-backup-local:/backups
+
+  # Debug SMTP provider
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - "8025:8025"
+
+volumes:
+  # Persistent volumes for postgres database data
+  iar-gatherstats-postgres-data-local:
+  iar-gatherstats-postgres-backup-local:

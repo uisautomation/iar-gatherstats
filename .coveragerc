@@ -1,0 +1,10 @@
+[run]
+omit=
+	.tox/*
+	setup.py
+	manage.py
+	*/test/*
+	*/tests/*
+	gatherstats_project/settings/*
+	gatherstats_project/wsgi.py
+	.tox/
