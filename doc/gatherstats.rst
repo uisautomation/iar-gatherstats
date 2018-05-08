@@ -21,3 +21,9 @@ application.
 
 .. automodule:: gatherstats.management.commands.gatherstats
     :members:
+
+Models
+``````
+
+.. automodule:: gatherstats.models
+    :members:
