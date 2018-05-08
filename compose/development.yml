@@ -12,12 +12,6 @@ services:
       context: ..
       dockerfile: ./compose/development.Dockerfile
 
-    expose:
-      - "8000"
-
-    ports:
-      - "8000:8000"
-
     env_file:
       - base.env
       - development.env

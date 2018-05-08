@@ -23,18 +23,6 @@ ADD . .
 # You probably want to modify the following environment variables:
 #
 # DJANGO_DB_ENGINE, DJANGO_DB_HOST, DJANGO_DB_PORT, DJANGO_DB_USER
-EXPOSE 8000
-ENV \
-	DJANGO_SETTINGS_MODULE=gatherstats_project.settings.docker \
-	PORT=8000
+ENV DJANGO_SETTINGS_MODULE=gatherstats_project.settings.docker
 
-# Use gunicorn as a web-server after running migration command
-CMD gunicorn \
-	--name iar-gatherstats \
-	--bind :$PORT \
-	--workers 3 \
-	--log-level=info \
-	--log-file=- \
-	--access-logfile=- \
-	--capture-output \
-	gatherstats_project.wsgi
+ENTRYPOINT ["./manage.py"]

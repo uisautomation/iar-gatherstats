@@ -7,4 +7,4 @@
 cd "$( dirname "${BASH_SOURCE[0]}")"
 
 # Run test suite
-exec ./compose.sh tox run --rm tox $@
+exec ./compose.sh tox run --rm --entrypoint=tox tox $@

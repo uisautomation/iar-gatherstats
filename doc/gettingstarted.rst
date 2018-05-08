@@ -50,48 +50,6 @@ Sometimes you'll want to ``push`` or ``pull`` from it.
 
     $ git remote add $USER git@github.com:$USER/iar-gatherstats.git
 
-.. _docker-devserver:
-
-Running a development server
-````````````````````````````
-
-There is a `docker-compose <https://docs.docker.com/compose/>`_ file at the
-top-level of the |project| repository which contains configuration allowing the
-application container to be launched in a development mode. In this mode the
-application repository is mounted **read-only** as a volume within the container
-over the top of the application code so changes are reflected within the
-container without need to rebuild it.
-
-The local repository is mounted read-only because any files written by the
-application will appear in the local repository as a root-owned file which can
-be troublesome.
-
-To run the development server:
-
-.. code-block:: bash
-
-    $ ./compose.sh development
-
-This makes use of the
-:py:class:`gatherstats_project.settings.developer` settings,
-launches a PostgreSQL container for the development server and a `MailHog
-<https://github.com/mailhog/MailHog>`_ server to monitor outgoing email. The web
-app is available at http://localhost:8000/ and the MailHog instance at
-http://localhost:8025/.
-
-.. note::
-
-    If the ``requirements/*.txt`` files are modified, you'll need to re-build
-    the container image via ``docker-compose build``.
-
-Occasionally, it is useful to get an interactive Python shell which is set up to
-be able to import the application code and to make database queries, etc. You
-can launch such a shell via:
-
-.. code-block:: bash
-
-    $ ./compose.sh development exec development_app python3 ./manage.py shell
-
 .. _docker-tox:
 
 Running tests

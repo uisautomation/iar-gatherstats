@@ -21,17 +21,12 @@ script:
       -e COVERAGE_FILE=/tmp/workspace/.coverage
       -e TOXINI_ARTEFACT_DIR=/tmp/workspace/build
       --rm
+      --entrypoint=tox
       tox
   - ./compose.sh tox down
 
-  # Check that the production container builds and listens on port 8000
-  - ./compose.sh production up -d
-  - ./compose/wait-for-it.sh localhost:8000 -t 15
-  - ./compose.sh production exec production_app ./manage.py migrate
-
-  # The health-check endpoint should return a non-fail status.
-  - curl --location --output /tmp/status --fail --silent --connect-timeout 2
-      http://localhost:8000/status
+  # Check that the production container builds and runs successfully
+  - ./manage_production.sh gatherstats
 
 after_success:
   - codecov
