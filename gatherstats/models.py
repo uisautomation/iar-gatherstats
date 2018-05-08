@@ -1,4 +1,73 @@
-from django.db import models
+from django.db import models, transaction
+from django.utils import timezone
+
+
+def _flatten_dict(d, prefix_path=[]):
+    """A generator which yields key/value pairs from a flattened dict. E.g., given the following
+    dict::
+
+        {
+            'foo': 45,
+            'bar': {
+                'buzz': 70,
+                'bang': 'hello',
+            },
+            'quux': {},  # empty dicts are ignored
+        }
+
+    This function generates the following pairs::
+
+        ('foo', 45)
+        ('bar.buzz', 70)
+        ('bar.bang', 'hello')
+
+    The ordering is not guaranteed beyond the dictionary will be explored in a breadth first
+    manner.
+
+    """
+    if not isinstance(d, dict):
+        raise TypeError('_flatten_dict() must be passed a dict')
+
+    dict_items = []
+    for k, v in d.items():
+        if not isinstance(v, dict):
+            yield '.'.join(prefix_path + [k]), v
+        else:
+            dict_items.append((k, v))
+
+    # Process dict items after all non-dict items to ensure breadth-first navigation
+    for k, v in dict_items:
+        assert isinstance(v, dict)
+        for item in _flatten_dict(v, prefix_path=prefix_path + [k]):
+            yield item
+
+
+class StatisticManager(models.Manager):
+    """
+    Custom object manager for :py:class:`Statistic`. Accessed via :py:attr:`Statistic.objects`.
+    """
+
+    @transaction.atomic
+    def create_from_stats_response(self, endpoint, body, fetched_at=None):
+        """Create :py:class:`Statistic` instances from a dictionary representation of a stats
+        endpoint response body.
+
+        The object creation is done within a database atomic transaction so other users of the
+        database never see a partially processed object.
+
+        If *fetched_at* is None, :py:func:`timezone.now` is used.
+
+        """
+        fetched_at = fetched_at if fetched_at is not None else timezone.now()
+
+        created_objects = [
+            Statistic.objects.create(
+                endpoint=endpoint, key=key, numeric_value=value, fetched_at=fetched_at
+            )
+            for key, value in _flatten_dict(body)
+        ]
+
+        return created_objects
 
 
 class Statistic(models.Model):
@@ -53,6 +122,7 @@ class Statistic(models.Model):
             institution;
 
     """
+    objects = StatisticManager()
 
     #: URL for the endpoint this statistic was fetched from.
     endpoint = models.URLField(
