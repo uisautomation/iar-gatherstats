@@ -25,9 +25,6 @@ script:
       tox
   - ./compose.sh tox down
 
-  # Check that the production container builds and runs successfully
-  - ./manage_production.sh gatherstats
-
 after_success:
   - codecov
 
