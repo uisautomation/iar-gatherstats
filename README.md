@@ -45,3 +45,9 @@ The following environment variables configure the Docker image:
 * ``DJANGO_DB_USER``: Username used to connect to database. Default: ``None``.
 * ``DJANGO_DB_PASSWORD``: Password used to connect to database. Default:
     ``None``.
+
+### Secret key
+
+The Docker image bakes in a "secret" key to the image because it is currently
+unused by any of the features. If this worries you, set the
+``DJANGO_SECRET_KEY`` environment variable when running the container.
