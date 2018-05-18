@@ -57,16 +57,19 @@ manage
 
 .. _devserver:
 
-Run the development server
-``````````````````````````
+Run management commands
+```````````````````````
 
-Django comes with a development web server which can be run via:
+There are wrappers which allow running management commands either in a
+development environment (which mounts the work directory as a volume) or in the
+production image build (which must be built first). For example:
 
 .. code-block:: bash
 
-    $ ./compose.sh development
+    $ ./manage_development.sh gatherstats   # respects local changes
 
-The server should now be browsable at http://localhost:8000/.
+    $ ./compose.sh production build         # build a production image
+    $ ./manage_production.sh                # uses contents of production image
 
 Building the documentation
 ``````````````````````````
@@ -78,10 +81,7 @@ Docker images
 -------------
 
 The application is deployed using `Docker
-<https://docker.com/>`_ containers on the Google Container Engine. Usually one
-can just use the :any:`local development server <devserver>` to develop the
-application but occasionally one needs to test the container or make use of the
-same PostgreSQL database which is used in production.
+<https://docker.com/>`_ containers on the Google Container Engine.
 
 Cloud infrastructure
 --------------------

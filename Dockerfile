@@ -17,24 +17,21 @@ RUN pip install --no-cache-dir -r requirements/base.txt && \
 # Copy the remaining files over
 ADD . .
 
-# Default environment for image.  By default, we use the settings module bundled
+# Default environment for image.
+#
+# DANGER WILL ROBINSON! This file includes a baked-in secret key. This is
+# because this application has NO web interface and therefore does not need to
+# have cookie encryption, etc. Django still complains if SECRET_KEY is unset so
+# we set it here.
+#
+# By default, we use the settings module bundled
 # with this repo. Change DJANGO_SETTINGS_MODULE to install a custom settings.
 #
 # You probably want to modify the following environment variables:
 #
 # DJANGO_DB_ENGINE, DJANGO_DB_HOST, DJANGO_DB_PORT, DJANGO_DB_USER
-EXPOSE 8000
 ENV \
-	DJANGO_SETTINGS_MODULE=gatherstats_project.settings.docker \
-	PORT=8000
+    DJANGO_SECRET_KEY=this-key-is-not-secret-in-any-meaningful-way-read-the-comment-above \
+    DJANGO_SETTINGS_MODULE=gatherstats_project.settings.docker
 
-# Use gunicorn as a web-server after running migration command
-CMD gunicorn \
-	--name iar-gatherstats \
-	--bind :$PORT \
-	--workers 3 \
-	--log-level=info \
-	--log-file=- \
-	--access-logfile=- \
-	--capture-output \
-	gatherstats_project.wsgi
+ENTRYPOINT ["./manage.py"]

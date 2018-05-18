@@ -1,5 +1,8 @@
 FROM python:3.6
 
+# Install useful packages
+RUN apt-get -y update && apt-get -y install vim postgresql-client
+
 # Do everything relative to /usr/src/app which is where we install our
 # application.
 WORKDIR /usr/src/app
@@ -12,7 +15,7 @@ RUN pip install -r ./requirements/developer.txt
 VOLUME /usr/src/app
 
 # Copy startup script
-ADD ./compose/start-devserver.sh ./compose/wait-for-it.sh /tmp/
+ADD ./compose/start.sh ./compose/wait-for-it.sh /tmp/
 
 # By default, use the Django development server to serve the application and use
 # developer-specific settings.
@@ -20,4 +23,4 @@ ADD ./compose/start-devserver.sh ./compose/wait-for-it.sh /tmp/
 # *DO NOT DEPLOY THIS TO PRODUCTION*
 ENV DJANGO_SETTINGS_MODULE gatherstats_project.settings_developer
 ENTRYPOINT ["/tmp/wait-for-it.sh", "iar-gatherstats-db:5432", "--"]
-CMD ["/tmp/start-devserver.sh"]
+CMD ["/tmp/start.sh"]
