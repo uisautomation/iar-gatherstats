@@ -23,10 +23,6 @@ class Migration(migrations.Migration):
         ),
         migrations.AddIndex(
             model_name='statistic',
-            index=models.Index(fields=['endpoint'], name='gatherstats_endpoin_3d040d_idx'),
-        ),
-        migrations.AddIndex(
-            model_name='statistic',
             index=models.Index(fields=['endpoint', 'key', 'fetched_at'], name='gatherstats_endpoin_ca0383_idx'),
         ),
         migrations.AlterUniqueTogether(
