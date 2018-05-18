@@ -154,9 +154,8 @@ class Statistic(models.Model):
         )
 
         indexes = [
-            # Generate indices for endpoints and fetched at value alone and the
-            # endpoint/key/fetched_at combination since these are likely to be the most common
-            # filtering options. More indexes can be created should it become necessary.
-            models.Index(fields=['endpoint']),
+            # Generate index for endpoint/key/fetched_at combination since these are likely to be
+            # the most common filtering options. More indexes can be created should it become
+            # necessary.
             models.Index(fields=['endpoint', 'key', 'fetched_at']),
         ]
