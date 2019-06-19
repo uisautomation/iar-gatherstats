@@ -1,3 +1,5 @@
+> This repository has moved to https://gitlab.developers.cam.ac.uk/uis/devops/iar/gatherstats
+
 # Gather statistics for the IAR
 
 [![Build
