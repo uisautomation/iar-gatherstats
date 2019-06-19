@@ -1,0 +1,382 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>IAR Stats Gatherer &mdash; IAR Stats Gatherer  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Django project configuration" href="project.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> IAR Stats Gatherer
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer.html">Developer’s guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project.html">Django project configuration</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">IAR Stats Gatherer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-gatherstats.apps">Application configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#management-commands">Management commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gatherstats">gatherstats</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-gatherstats.models">Models</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">IAR Stats Gatherer</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>IAR Stats Gatherer</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/gatherstats.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="iar-stats-gatherer">
+<h1>IAR Stats Gatherer<a class="headerlink" href="#iar-stats-gatherer" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>Add the <code class="docutils literal notranslate"><span class="pre">gatherstats</span></code> application to your <code class="docutils literal notranslate"><span class="pre">INSTALLED_APPS</span></code> configuration as
+usual.</p>
+</div>
+<div class="section" id="module-gatherstats.apps">
+<span id="application-configuration"></span><h2>Application configuration<a class="headerlink" href="#module-gatherstats.apps" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="gatherstats.apps.Config">
+<em class="property">class </em><code class="sig-prename descclassname">gatherstats.apps.</code><code class="sig-name descname">Config</code><span class="sig-paren">(</span><em class="sig-param">app_name</em>, <em class="sig-param">app_module</em><span class="sig-paren">)</span><a class="headerlink" href="#gatherstats.apps.Config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configuration for IAR Stats Gatherer application.</p>
+<dl class="attribute">
+<dt id="gatherstats.apps.Config.name">
+<code class="sig-name descname">name</code><em class="property"> = 'gatherstats'</em><a class="headerlink" href="#gatherstats.apps.Config.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The short name for this application. This should be the Python module name since Django uses
+this to import things.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gatherstats.apps.Config.ready">
+<code class="sig-name descname">ready</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gatherstats.apps.Config.ready" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform application initialisation once the Django platform has been initialised.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gatherstats.apps.Config.verbose_name">
+<code class="sig-name descname">verbose_name</code><em class="property"> = 'gatherstats'</em><a class="headerlink" href="#gatherstats.apps.Config.verbose_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The human-readable verbose name for this application.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="management-commands">
+<h2>Management commands<a class="headerlink" href="#management-commands" title="Permalink to this headline">¶</a></h2>
+<p>The following new management commands are provided by the <code class="docutils literal notranslate"><span class="pre">gatherstats</span></code>
+application.</p>
+<span class="target" id="module-gatherstats.management.commands.gatherstats"></span><div class="section" id="gatherstats">
+<h3>gatherstats<a class="headerlink" href="#gatherstats" title="Permalink to this headline">¶</a></h3>
+<p>Gather statistics from an IAR endpoint and write records to the DB.</p>
+<dl class="class">
+<dt id="gatherstats.management.commands.gatherstats.Command">
+<em class="property">class </em><code class="sig-prename descclassname">gatherstats.management.commands.gatherstats.</code><code class="sig-name descname">Command</code><span class="sig-paren">(</span><em class="sig-param">stdout=None</em>, <em class="sig-param">stderr=None</em>, <em class="sig-param">no_color=False</em>, <em class="sig-param">force_color=False</em><span class="sig-paren">)</span><a class="headerlink" href="#gatherstats.management.commands.gatherstats.Command" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implementation of gatherstats management command.</p>
+<dl class="method">
+<dt id="gatherstats.management.commands.gatherstats.Command.add_arguments">
+<code class="sig-name descname">add_arguments</code><span class="sig-paren">(</span><em class="sig-param">parser</em><span class="sig-paren">)</span><a class="headerlink" href="#gatherstats.management.commands.gatherstats.Command.add_arguments" title="Permalink to this definition">¶</a></dt>
+<dd><p>Entry point for subclassed commands to add custom arguments.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gatherstats.management.commands.gatherstats.Command.handle">
+<code class="sig-name descname">handle</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**options</em><span class="sig-paren">)</span><a class="headerlink" href="#gatherstats.management.commands.gatherstats.Command.handle" title="Permalink to this definition">¶</a></dt>
+<dd><p>The actual logic of the command. Subclasses must implement
+this method.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-gatherstats.models">
+<span id="models"></span><h2>Models<a class="headerlink" href="#module-gatherstats.models" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="gatherstats.models.Statistic">
+<em class="property">class </em><code class="sig-prename descclassname">gatherstats.models.</code><code class="sig-name descname">Statistic</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#gatherstats.models.Statistic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Statistics from the IAR stats endpoint look like the following:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;asset_counts&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;all&quot;</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;total&quot;</span><span class="o">:</span> <span class="mi">1234</span><span class="p">,</span>
+            <span class="s2">&quot;completed&quot;</span><span class="o">:</span> <span class="mi">1234</span><span class="p">,</span>
+            <span class="s2">&quot;with_personal_data&quot;</span><span class="o">:</span> <span class="mi">1234</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;by_institution&quot;</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;INSTA&quot;</span><span class="o">:</span> <span class="p">{</span>
+                <span class="s2">&quot;total&quot;</span><span class="o">:</span> <span class="mi">123</span><span class="p">,</span>
+                <span class="s2">&quot;completed&quot;</span><span class="o">:</span> <span class="mi">123</span><span class="p">,</span>
+                <span class="s2">&quot;with_personal_data&quot;</span><span class="o">:</span> <span class="mi">123</span>
+            <span class="p">}</span>
+            <span class="c1">// ... etc</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In order to allow this schema to change in the future, we convert this structured table into a
+series of rows recording the JavaScript-style key path and the value. For example, one row from
+the above would be created as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.utils</span> <span class="k">import</span> <span class="n">timezone</span>
+<span class="kn">from</span> <span class="nn">gatherstats.models</span> <span class="k">import</span> <span class="n">Stat</span>
+
+<span class="n">Statistic</span><span class="p">(</span>
+    <span class="n">endpoint</span><span class="o">=</span><span class="s1">&#39;http://iar-backend.invalid/stats&#39;</span><span class="p">,</span>
+    <span class="n">key</span><span class="o">=</span><span class="s1">&#39;asset_counts.by_institution.INSTA.completed&#39;</span><span class="p">,</span>
+    <span class="n">numeric_value</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span>
+    <span class="n">fetched_at</span><span class="o">=</span><span class="n">now</span><span class="p">(),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Sufficiently clever SQL can be used to query various things from this DB. For example, to get a
+list of all institutions with available statistics:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">DISTINCT</span>
+    <span class="k">SUBSTRING</span><span class="p">(</span><span class="k">key</span> <span class="k">FROM</span> <span class="s1">&#39;^by_institution\.([^\.]+)\.[^\.]+$&#39;</span><span class="p">)</span> <span class="k">AS</span> <span class="n">institution</span>
+<span class="k">FROM</span>
+    <span class="n">gatherstats_statistic</span>
+<span class="k">WHERE</span> <span class="k">key</span> <span class="o">~</span> <span class="s1">&#39;^by_institution\.([^\.]+)\.[^\.]+$&#39;</span>
+<span class="k">ORDER</span> <span class="k">BY</span>
+    <span class="n">institution</span><span class="p">;</span>
+</pre></div>
+</div>
+<dl class="exception">
+<dt id="gatherstats.models.Statistic.DoesNotExist">
+<em class="property">exception </em><code class="sig-name descname">DoesNotExist</code><a class="headerlink" href="#gatherstats.models.Statistic.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="gatherstats.models.Statistic.MultipleObjectsReturned">
+<em class="property">exception </em><code class="sig-name descname">MultipleObjectsReturned</code><a class="headerlink" href="#gatherstats.models.Statistic.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gatherstats.models.Statistic.endpoint">
+<code class="sig-name descname">endpoint</code><a class="headerlink" href="#gatherstats.models.Statistic.endpoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>URL for the endpoint this statistic was fetched from.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gatherstats.models.Statistic.fetched_at">
+<code class="sig-name descname">fetched_at</code><a class="headerlink" href="#gatherstats.models.Statistic.fetched_at" title="Permalink to this definition">¶</a></dt>
+<dd><p>By design, this schema “flattens” statistics into rows and multiple rows may represent a
+single query to the stats endpoint. It is for this reason that we do not default this to
+now() and instead require that it be set explicitly.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gatherstats.models.Statistic.key">
+<code class="sig-name descname">key</code><a class="headerlink" href="#gatherstats.models.Statistic.key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Key path for statistic. E.g. “asset_counts.by_institution.UIS.total”.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gatherstats.models.Statistic.numeric_value">
+<code class="sig-name descname">numeric_value</code><a class="headerlink" href="#gatherstats.models.Statistic.numeric_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>This field is called “numeric_value” to allow for other types to be stored in the future.
+When that future comes, this field needs to have null and blank set to True and a custom
+validation will need to be added that checks that <em>some</em> value is set. In these simpler
+times, we can just rely on this being a non-NULL, non-blank field.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gatherstats.models.StatisticManager">
+<em class="property">class </em><code class="sig-prename descclassname">gatherstats.models.</code><code class="sig-name descname">StatisticManager</code><a class="headerlink" href="#gatherstats.models.StatisticManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>Custom object manager for <a class="reference internal" href="#gatherstats.models.Statistic" title="gatherstats.models.Statistic"><code class="xref py py-class docutils literal notranslate"><span class="pre">Statistic</span></code></a>. Accessed via <code class="xref py py-attr docutils literal notranslate"><span class="pre">Statistic.objects</span></code>.</p>
+<dl class="method">
+<dt id="gatherstats.models.StatisticManager.create_from_stats_response">
+<code class="sig-name descname">create_from_stats_response</code><span class="sig-paren">(</span><em class="sig-param">endpoint</em>, <em class="sig-param">body</em>, <em class="sig-param">fetched_at=None</em><span class="sig-paren">)</span><a class="headerlink" href="#gatherstats.models.StatisticManager.create_from_stats_response" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create <a class="reference internal" href="#gatherstats.models.Statistic" title="gatherstats.models.Statistic"><code class="xref py py-class docutils literal notranslate"><span class="pre">Statistic</span></code></a> instances from a dictionary representation of a stats
+endpoint response body.</p>
+<p>The object creation is done within a database atomic transaction so other users of the
+database never see a partially processed object.</p>
+<p>If <em>fetched_at</em> is None, <code class="xref py py-func docutils literal notranslate"><span class="pre">timezone.now()</span></code> is used.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="project.html" class="btn btn-neutral float-left" title="Django project configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, University of Cambridge Information Services
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
